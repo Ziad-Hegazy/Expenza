@@ -1,5 +1,5 @@
 # expenza
 
-An expenses tracker app.
+The expenses tracker app.
 
-_This project is still in progress_
+(still in progress)
