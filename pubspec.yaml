@@ -32,6 +32,7 @@ flutter:
 
   assets:
     - assets/icons/bold/
+    - assets/icons/bulk/
     - assets/blue_blur.png
 
   fonts:

@@ -1,6 +1,6 @@
-import 'package:expenza/core/utils/styles/app_icons.dart';
+import 'package:expenza/core/utils/enums/icons.dart';
+import 'package:expenza/core/widgets/app_icon.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class NavItem {
   final String title;
@@ -61,12 +61,9 @@ class NavBar extends StatelessWidget {
       ),
       padding: EdgeInsets.all(15),
       child: InkWell(
-        child: SvgPicture.asset(
-          navItems[index].icon.path(
-            selectedIndex == index ? IconStyles.bold : IconStyles.bulk,
-          ),
-          width: 30,
-          height: 30,
+        child: AppIcon(
+          navItems[index].icon,
+          style: selectedIndex == index ? IconStyles.bold : IconStyles.bulk,
         ),
       ),
     );

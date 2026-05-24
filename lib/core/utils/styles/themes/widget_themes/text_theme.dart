@@ -12,6 +12,10 @@ class AppTextTheme {
       fontSize: 24.sp,
       fontVariations: [FontVariation('wght', 500)],
     ),
+    bodyLarge: TextStyle(
+      fontSize: 18.sp,
+      fontVariations: [FontVariation('wght', 500)],
+    ),
     bodyMedium: TextStyle(
       fontSize: 18.sp,
       fontVariations: [FontVariation('wght', 500)],

@@ -7,12 +7,15 @@ class AppInputDecorationTheme {
   static InputDecorationTheme copyWith({
     TextStyle? hintStyle,
     Color? fillColor,
+    Color? iconColor,
   }) {
     return InputDecorationTheme(
       contentPadding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
       filled: true,
       fillColor: fillColor,
+      suffixIconColor: iconColor,
       hintStyle: hintStyle,
+      suffixIconConstraints: BoxConstraints.loose(Size(50.w, 50.h)),
       border: OutlineInputBorder(
         borderSide: BorderSide.none,
         borderRadius: BorderRadius.circular(15.r),

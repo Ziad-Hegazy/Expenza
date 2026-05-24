@@ -30,6 +30,7 @@ class AppThemes {
       hintStyle: AppTextTheme.values.bodyMedium!.copyWith(
         color: AppColors.black.withAlpha(76),
       ),
+      iconColor: AppColors.black,
     ),
   );
   static final ThemeData dark = ThemeData.dark().copyWith();

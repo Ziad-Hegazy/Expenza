@@ -9,7 +9,7 @@ class BaseAuthScreen extends StatelessWidget {
     this.subtitle = '',
     this.body,
     this.footer,
-    this.showBack = true,
+    this.showBack = false,
   });
 
   final String title;
@@ -21,7 +21,7 @@ class BaseAuthScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: ()=>FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         body: Stack(
           alignment: AlignmentDirectional.topEnd,
@@ -35,7 +35,11 @@ class BaseAuthScreen extends StatelessWidget {
               child: SizedBox(
                 height: MediaQuery.heightOf(context),
                 child: Padding(
-                  padding: EdgeInsets.only(left: 40.w, right: 40.w, bottom: 20.h),
+                  padding: EdgeInsets.only(
+                    left: 40.w,
+                    right: 40.w,
+                    bottom: 20.h,
+                  ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.center,
