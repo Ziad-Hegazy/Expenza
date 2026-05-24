@@ -1,0 +1,1 @@
+const String blueBlur = 'assets/blue_blur.png';
