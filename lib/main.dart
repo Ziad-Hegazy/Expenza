@@ -27,7 +27,7 @@ class MainApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: AppThemes.light,
-          darkTheme: AppThemes.dark,
+          darkTheme: AppThemes.light, //TODO: implement dark theme and re-add it
           themeMode: Provider.of<ThemeManager>(context).themeMode,
           home:Login()
         );

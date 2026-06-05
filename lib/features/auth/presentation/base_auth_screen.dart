@@ -20,9 +20,11 @@ class BaseAuthScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double bottomInset = MediaQuery.viewInsetsOf(context).bottom;
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Stack(
           alignment: AlignmentDirectional.topEnd,
           children: [
@@ -32,28 +34,33 @@ class BaseAuthScreen extends StatelessWidget {
               child: Image.asset(blueBlur, width: 400.w, height: 400.h),
             ),
             SingleChildScrollView(
-              child: SizedBox(
-                height: MediaQuery.heightOf(context),
-                child: Padding(
-                  padding: EdgeInsets.only(
-                    left: 40.w,
-                    right: 40.w,
-                    bottom: 20.h,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    spacing: 39.h,
-                    children: [
-                      _header(
-                        title: 'Welcome',
-                        subtitle: 'Sign in to continue',
-                        showBack: showBack,
-                        context: context,
-                      ),
-                      body ?? SizedBox.shrink(),
-                      footer ?? SizedBox.shrink(),
-                    ],
+              child: AnimatedPadding(
+                padding: EdgeInsets.only(bottom: bottomInset),
+                curve: Curves.easeOut,
+                duration: Duration(milliseconds: 300),
+                child: SizedBox(
+                  height: MediaQuery.heightOf(context),
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      left: 40.w,
+                      right: 40.w,
+                      bottom: 20.h,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      spacing: 39.h,
+                      children: [
+                        _header(
+                          title: 'Welcome',
+                          subtitle: 'Sign in to continue',
+                          showBack: showBack,
+                          context: context,
+                        ),
+                        body ?? SizedBox.shrink(),
+                        footer ?? SizedBox.shrink(),
+                      ],
+                    ),
                   ),
                 ),
               ),

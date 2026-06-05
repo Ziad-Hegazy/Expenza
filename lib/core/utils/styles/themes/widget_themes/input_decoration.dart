@@ -15,7 +15,7 @@ class AppInputDecorationTheme {
       fillColor: fillColor,
       suffixIconColor: iconColor,
       hintStyle: hintStyle,
-      suffixIconConstraints: BoxConstraints.loose(Size(50.w, 50.h)),
+      suffixIconConstraints: BoxConstraints.loose(Size(55.w, 50.h)),
       border: OutlineInputBorder(
         borderSide: BorderSide.none,
         borderRadius: BorderRadius.circular(15.r),
