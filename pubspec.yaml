@@ -17,6 +17,7 @@ dependencies:
   provider: ^6.1.5+1
   flutter_svg: ^2.3.0
   flutter_screenutil: ^5.9.3
+  adaptive_platform_ui: ^0.1.107
 
 dev_dependencies:
   flutter_test:
