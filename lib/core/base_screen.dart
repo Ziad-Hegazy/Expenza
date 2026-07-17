@@ -1,5 +1,5 @@
-import 'package:expenza/core/utils/constants/nav_items.dart';
-import 'package:expenza/core/widgets/nav_bar.dart';
+import 'package:Expenza/core/utils/constants/nav_items.dart';
+import 'package:Expenza/core/widgets/nav_bar.dart';
 import 'package:flutter/material.dart';
 
 class BaseScreen extends StatelessWidget {

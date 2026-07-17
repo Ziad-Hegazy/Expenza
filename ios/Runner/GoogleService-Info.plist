@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>963229925830-2sj7tv7qv946nmkld15g46dvb4livob2.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.963229925830-2sj7tv7qv946nmkld15g46dvb4livob2</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>963229925830-1ajl1ar0o9ggktrtm8oul6emh0h9t9ap.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCeVbDcJEliapGJBeLeemQNqcv5U9pK0zw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>963229925830</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.zero.expenza.expenza</string>
+	<key>PROJECT_ID</key>
+	<string>expenza-mobile</string>
+	<key>STORAGE_BUCKET</key>
+	<string>expenza-mobile.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:963229925830:ios:4a2990c1387172789872c7</string>
+</dict>
+</plist>

@@ -1,0 +1,31 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "expenza-mobile",
+          "appId": "1:963229925830:android:3e4e927991df98099872c7",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "ios": {
+        "default": {
+          "projectId": "expenza-mobile",
+          "appId": "1:963229925830:ios:4a2990c1387172789872c7",
+          "uploadDebugSymbols": false,
+          "fileOutput": "ios/Runner/GoogleService-Info.plist"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "expenza-mobile",
+          "configurations": {
+            "android": "1:963229925830:android:3e4e927991df98099872c7",
+            "ios": "1:963229925830:ios:4a2990c1387172789872c7",
+            "web": "1:963229925830:web:a2497574aa8336fd9872c7"
+          }
+        }
+      }
+    }
+  }
+}

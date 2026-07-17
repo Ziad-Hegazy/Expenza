@@ -1,4 +1,4 @@
-import 'package:expenza/core/utils/constants/strings.dart';
+import 'package:Expenza/core/utils/constants/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

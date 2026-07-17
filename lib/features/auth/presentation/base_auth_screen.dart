@@ -1,4 +1,4 @@
-import 'package:expenza/core/utils/constants/images.dart';
+import 'package:Expenza/core/utils/constants/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -30,7 +30,7 @@ class BaseAuthScreen extends StatelessWidget {
           children: [
             PositionedDirectional(
               end: -65.w,
-              top: 61.h,
+              top: 0.h,
               child: Image.asset(blueBlur, width: 400.w, height: 400.h),
             ),
             SingleChildScrollView(
@@ -52,13 +52,13 @@ class BaseAuthScreen extends StatelessWidget {
                       spacing: 39.h,
                       children: [
                         _header(
-                          title: 'Welcome',
-                          subtitle: 'Sign in to continue',
+                          title: title,
+                          subtitle: subtitle,
                           showBack: showBack,
                           context: context,
                         ),
-                        body ?? SizedBox.shrink(),
-                        footer ?? SizedBox.shrink(),
+                        ?body,
+                        ?footer,
                       ],
                     ),
                   ),

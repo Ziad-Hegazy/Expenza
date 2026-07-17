@@ -1,5 +1,5 @@
-import 'package:expenza/core/utils/enums/icons.dart';
-import 'package:expenza/core/widgets/app_icon.dart';
+import 'package:Expenza/core/utils/enums/icons.dart';
+import 'package:Expenza/core/widgets/app_icon.dart';
 import 'package:flutter/material.dart';
 
 class NavItem {

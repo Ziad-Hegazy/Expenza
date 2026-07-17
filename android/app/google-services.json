@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "963229925830",
+    "project_id": "expenza-mobile",
+    "storage_bucket": "expenza-mobile.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:963229925830:android:3e4e927991df98099872c7",
+        "android_client_info": {
+          "package_name": "com.zero.expenza.expenza"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "963229925830-1ajl1ar0o9ggktrtm8oul6emh0h9t9ap.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.zero.expenza.expenza",
+            "certificate_hash": "619727d1c8248118a32319e61e6a8bbbd5b045a4"
+          }
+        },
+        {
+          "client_id": "963229925830-s5e541ot7fvrbg4q3vnb6fljtb3nckvd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5eNZ5mMMVvYalUaEAFkoivSv1vLao8l4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "963229925830-s5e541ot7fvrbg4q3vnb6fljtb3nckvd.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "963229925830-2sj7tv7qv946nmkld15g46dvb4livob2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.zero.expenza.expenza"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
