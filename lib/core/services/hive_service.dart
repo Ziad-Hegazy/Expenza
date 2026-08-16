@@ -21,7 +21,7 @@ class HiveClient {
     box.close();
   }
 
-  Future<void> delete (dynamic item, String boxName, String key) async {
+  Future<void> delete (String key, String boxName) async {
     Box box = await Hive.openBox(boxName);
     box.delete(key);
     box.close();
