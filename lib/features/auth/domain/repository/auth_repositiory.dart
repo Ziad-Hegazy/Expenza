@@ -1,12 +1,11 @@
-import 'package:Expenza/features/auth/data/models/user_mode.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:Expenza/features/auth/data/models/user_model.dart';
 
 abstract class AuthRepository {
-  Future<UserCredential> signInStandard(String email, String password);
+  Future<UserModel> signInStandard(String email, String password);
 
-  Future<UserCredential> signInWithGoogle();
+  Future<UserModel> signInWithGoogle();
 
-  Future<UserCredential> createAccount({
+  Future<UserModel> createAccount({
     required String email,
     required String password,
     required String name,

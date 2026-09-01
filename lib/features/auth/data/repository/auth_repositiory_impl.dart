@@ -1,7 +1,12 @@
-import 'package:Expenza/features/auth/data/models/user_mode.dart';
+import 'package:Expenza/features/auth/data/models/user_model.dart';
 import 'package:Expenza/features/auth/data/service/auth_service.dart';
 import 'package:Expenza/features/auth/domain/repository/auth_repositiory.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+final authRepositoryProvider = Provider(
+  (ref) => AuthRepositoryImpl(ref.read(authServiceProvider)),
+);
 
 class AuthRepositoryImpl implements AuthRepository {
   AuthService service;
@@ -9,33 +14,47 @@ class AuthRepositoryImpl implements AuthRepository {
   AuthRepositoryImpl(this.service);
 
   @override
-  Future<UserCredential> signInStandard(String email, String password) async {
-    return await service.signInStandard(email, password);
+  Future<UserModel> signInStandard(String email, String password) async {
+    final credential = await service.signInStandard(email, password);
+    if (credential.user != null) {
+      return UserModel.fromAuth(credential.user!);
+    } else {
+      throw "An unexpected error occured.";
+    }
   }
 
   @override
-  Future<UserCredential> signInWithGoogle() async {
-    return await service.signInWithGoogle();
+  Future<UserModel> signInWithGoogle() async {
+    final credential = await service.signInWithGoogle();
+    if (credential.user != null) {
+      return UserModel.fromAuth(credential.user!);
+    } else {
+      throw "An unexpected error occured.";
+    }
   }
 
   @override
-  Future<UserCredential> createAccount({
+  Future<UserModel> createAccount({
     required String email,
     required String password,
     required String name,
   }) async {
-    final UserCredential userCredential = await service.createAccount(
+    final UserCredential credential = await service.createAccount(
       email,
       password,
     );
-    await userCredential.user!.updateDisplayName(name);
-    return userCredential;
+    if (credential.user != null) {
+      await credential.user!.updateDisplayName(name);
+      return UserModel.fromAuth(credential.user!);
+    } else {
+      throw "An unexpected error occured.";
+    }
   }
 
   @override
-  UserModel? getCurrentUser(){
+  UserModel? getCurrentUser() {
     User? user = service.getCurrentUser();
-    return UserModel.fromAuth(user!);
+    return user != null ? UserModel.fromAuth(user) : null;
   }
 
   @override
