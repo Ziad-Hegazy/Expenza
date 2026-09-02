@@ -22,7 +22,6 @@ class MainApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final themeState = ref.watch(themeManagerProvider);
-    final authState = ref.watch(authViewModelProvider);
     return ScreenUtilInit(
       designSize: Size(402, 874),
       builder: (context, child) {
