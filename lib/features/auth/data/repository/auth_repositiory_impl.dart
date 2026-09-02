@@ -52,8 +52,8 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  UserModel? getCurrentUser() {
-    User? user = service.getCurrentUser();
+  Future<UserModel?> getCurrentUser() async {
+    User? user = await service.getCurrentUser();
     return user != null ? UserModel.fromAuth(user) : null;
   }
 

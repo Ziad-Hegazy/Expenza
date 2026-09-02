@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final themeProvider = NotifierProvider<ThemeManager, ThemeMode>(
+final themeManagerProvider = NotifierProvider<ThemeManager, ThemeMode>(
   ThemeManager.new,
 );
 

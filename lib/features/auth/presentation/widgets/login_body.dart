@@ -1,18 +1,19 @@
 import 'package:Expenza/core/utils/enums/icons.dart';
 import 'package:Expenza/core/widgets/app_icon.dart';
 import 'package:Expenza/core/widgets/appTextField.dart';
-import 'package:Expenza/testScaffold.dart';
+import 'package:Expenza/features/auth/presentation/view_models/auth_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class LoginBody extends StatefulWidget {
+class LoginBody extends ConsumerStatefulWidget {
   const LoginBody({super.key});
 
   @override
-  State<LoginBody> createState() => _LoginBodyState();
+  ConsumerState<LoginBody> createState() => _LoginBodyState();
 }
 
-class _LoginBodyState extends State<LoginBody> {
+class _LoginBodyState extends ConsumerState<LoginBody> {
   bool showPass = false;
 
   late final TextEditingController emailController;
@@ -50,7 +51,7 @@ class _LoginBodyState extends State<LoginBody> {
             textInputAction: TextInputAction.done,
           ),
           _buttons(),
-          _socialButtons(),
+          _socialButtons(ref, context),
         ],
       ),
     );
@@ -84,7 +85,9 @@ Row _buttons() {
   );
 }
 
-Column _socialButtons() {
+Column _socialButtons(WidgetRef ref, BuildContext context) {
+  final authState = ref.watch(authViewModelProvider);
+  final authViewModel = ref.read(authViewModelProvider.notifier);
   return Column(
     crossAxisAlignment: CrossAxisAlignment.center,
     spacing: 10.h,
@@ -93,7 +96,14 @@ Column _socialButtons() {
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
         spacing: 15.w,
-        children: [AppIcon(AppIcons.google_logo)],
+        children: [
+          IconButton(
+            onPressed: authState.isLoading
+                ? null
+                : authViewModel.signInWithGoogle,
+            icon: AppIcon(AppIcons.google_logo),
+          ),
+        ],
       ),
     ],
   );

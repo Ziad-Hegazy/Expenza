@@ -16,7 +16,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter_svg: ^2.3.0
   flutter_screenutil: ^5.9.3
-  adaptive_platform_ui: ^0.1.107
+  adaptive_platform_ui: ^0.1.111
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   adaptive_will_pop_scope: ^1.0.4
