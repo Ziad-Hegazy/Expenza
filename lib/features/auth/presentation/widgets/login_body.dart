@@ -35,25 +35,25 @@ class _LoginBodyState extends ConsumerState<LoginBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      child: Column(
-        spacing: 33.h,
-        children: [
-          AppTextField(
-            hintText: 'email',
-            textInputAction: TextInputAction.next,
-            keyboardType: TextInputType.emailAddress,
-          ),
-          AppTextField(
-            hintText: 'Password',
-            suffixIcon: _showIcon(),
-            obscureText: !showPass,
-            textInputAction: TextInputAction.done,
-          ),
-          _buttons(),
-          _socialButtons(ref, context),
-        ],
-      ),
+    return Column(
+      spacing: 33.h,
+      children: [
+        AppTextField(
+          hintText: 'email',
+          textInputAction: TextInputAction.next,
+          keyboardType: TextInputType.emailAddress,
+          controller: emailController,
+        ),
+        AppTextField(
+          hintText: 'Password',
+          suffixIcon: _showIcon(),
+          obscureText: !showPass,
+          textInputAction: TextInputAction.done,
+          controller: passwordController,
+        ),
+        _buttons(),
+        _socialButtons(ref, context),
+      ],
     );
   }
 
@@ -101,7 +101,7 @@ Column _socialButtons(WidgetRef ref, BuildContext context) {
             onPressed: authState.isLoading
                 ? null
                 : authViewModel.signInWithGoogle,
-            icon: AppIcon(AppIcons.google_logo),
+            icon: const AppIcon(AppIcons.google_logo),
           ),
         ],
       ),

@@ -14,20 +14,26 @@ class AuthLoadingAnimation extends StatefulWidget {
 
 class _AuthLoadingAnimationState extends State<AuthLoadingAnimation>
     with TickerProviderStateMixin {
-  late AnimationController _controller;
+  late AnimationController _animatedBlurController;
+  late AnimationController _animatedTextController;
 
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
+    _animatedBlurController = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 3),
     )..repeat();
+    _animatedTextController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1000),
+    )..forward();
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    _animatedBlurController.dispose();
+    _animatedTextController.dispose();
     super.dispose();
   }
 
@@ -39,9 +45,9 @@ class _AuthLoadingAnimationState extends State<AuthLoadingAnimation>
         child: Stack(
           children: [
             AnimatedBuilder(
-              animation: _controller,
+              animation: _animatedBlurController,
               builder: (context, child) {
-                final double t = _controller.value * 2 * math.pi;
+                final double t = _animatedBlurController.value * 2 * math.pi;
                 final double dy = radius * math.sin(t);
                 final double dx = radius * math.sin(2 * t) / 2;
                 return Transform.translate(
@@ -54,9 +60,17 @@ class _AuthLoadingAnimationState extends State<AuthLoadingAnimation>
               },
             ),
             Center(
-              child: Text(
-                'Just a second...',
-                style: AppTextTheme.values.titleMedium,
+              child: AnimatedBuilder(
+                animation: _animatedTextController,
+                builder: (context, child) {
+                  return Opacity(
+                    opacity: _animatedTextController.value,
+                    child: Text(
+                      'Just a second...',
+                      style: AppTextTheme.values.titleMedium,
+                    ),
+                  );
+                },
               ),
             ),
           ],

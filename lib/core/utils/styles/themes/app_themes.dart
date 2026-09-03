@@ -12,7 +12,7 @@ class AppThemes {
     secondaryHeaderColor: AppColors.blue,
     textTheme: AppTextTheme.copyWith(color: AppColors.black),
     filledButtonTheme: AppFilledButtonTheme.copyWith(
-      color: AppColors.blue,
+      color: AppColors.black,
       textStyle: AppTextTheme.values.displayMedium,
     ),
     textButtonTheme: AppTextButtonTheme.copyWith(

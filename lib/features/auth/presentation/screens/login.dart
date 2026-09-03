@@ -7,7 +7,7 @@ class Login extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseAuthScreen(
+    return const BaseAuthScreen(
       title: 'Hello',
       subtitle: 'Sign in to continue',
       body: LoginBody(),
