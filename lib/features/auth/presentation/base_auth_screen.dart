@@ -23,6 +23,7 @@ class BaseAuthScreen extends StatelessWidget {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Stack(
           alignment: AlignmentDirectional.topEnd,
           children: [_blurredDecoration(), _body(context)],
@@ -33,19 +34,26 @@ class BaseAuthScreen extends StatelessWidget {
 
   SingleChildScrollView _body(BuildContext context) {
     return SingleChildScrollView(
-      child: SafeArea(
-        top: false,
-        child: SizedBox(
-          height:
-              MediaQuery.heightOf(context) -
-              MediaQuery.viewPaddingOf(context).bottom,
-          child: Padding(
-            padding: EdgeInsets.only(
-              left: 40.w,
-              right: 40.w,
-              //bottom: 20.h,
+      child: AnimatedPadding(
+        duration: const Duration(milliseconds: 150),
+        curve: Curves.decelerate,
+        padding: EdgeInsets.only(
+          bottom: MediaQuery.viewInsetsOf(context).bottom,
+        ),
+        child: SafeArea(
+          top: false,
+          child: SizedBox(
+            height:
+                MediaQuery.heightOf(context) -
+                MediaQuery.viewPaddingOf(context).bottom,
+            child: Padding(
+              padding: EdgeInsets.only(
+                left: 40.w,
+                right: 40.w,
+                //bottom: 20.h,
+              ),
+              child: _bodyContent(context),
             ),
-            child: _bodyContent(context),
           ),
         ),
       ),
