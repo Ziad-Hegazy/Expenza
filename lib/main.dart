@@ -1,7 +1,6 @@
 import 'package:Expenza/core/utils/styles/themes/app_themes.dart';
 import 'package:Expenza/core/utils/styles/themes/theme_manager.dart';
 import 'package:Expenza/features/auth/presentation/screens/auth_gate.dart';
-import 'package:Expenza/features/auth/presentation/view_models/auth_view_model.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

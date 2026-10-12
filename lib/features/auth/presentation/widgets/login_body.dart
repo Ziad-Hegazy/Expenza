@@ -1,7 +1,8 @@
 import 'package:Expenza/core/utils/enums/icons.dart';
+import 'package:Expenza/core/utils/validators/mandatory_validator.dart';
 import 'package:Expenza/core/widgets/app_icon.dart';
 import 'package:Expenza/core/widgets/appTextField.dart';
-import 'package:Expenza/features/auth/presentation/view_models/auth_view_model.dart';
+import 'package:Expenza/features/auth/presentation/providers/auth_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,6 +19,7 @@ class _LoginBodyState extends ConsumerState<LoginBody> {
 
   late final TextEditingController emailController;
   late final TextEditingController passwordController;
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -35,76 +37,73 @@ class _LoginBodyState extends ConsumerState<LoginBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      spacing: 33.h,
+    return Form(
+      key: _formKey,
+      child: Column(
+        spacing: 33.h,
+        children: [
+          AppTextField(
+            hintText: 'email',
+            textInputAction: TextInputAction.next,
+            keyboardType: TextInputType.emailAddress,
+            controller: emailController,
+            validator: (value) => MandatoryValidator.validate('Email', value),
+            onChanged: (_) => _formKey.currentState?.clearError(),
+          ),
+          AppTextField(
+            hintText: 'Password',
+            obscureText: !showPass,
+            textInputAction: TextInputAction.done,
+            keyboardType: TextInputType.visiblePassword,
+            controller: passwordController,
+            validator: (value) => MandatoryValidator.validate('Email', value),
+            onChanged: (_) => _formKey.currentState?.clearError(),
+          ),
+          _buttons(),
+          _socialButtons(),
+        ],
+      ),
+    );
+  }
+
+  Row _buttons() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        AppTextField(
-          hintText: 'email',
-          textInputAction: TextInputAction.next,
-          keyboardType: TextInputType.emailAddress,
-          controller: emailController,
+        TextButton(onPressed: () {}, child: Text('Forgot\npassword')),
+        FilledButton(
+          onPressed: () {
+            if (_formKey.currentState?.validate() ?? false) {
+              ref
+                  .read(authNotifierProvider.notifier)
+                  .signIn(emailController.text, passwordController.text);
+            }
+          },
+          child: Text('Login'),
         ),
-        AppTextField(
-          hintText: 'Password',
-          suffixIcon: _showIcon(),
-          obscureText: !showPass,
-          textInputAction: TextInputAction.done,
-          controller: passwordController,
-        ),
-        _buttons(),
-        _socialButtons(ref, context),
       ],
     );
   }
 
-  Padding _showIcon() {
-    return Padding(
-      padding: EdgeInsetsDirectional.only(end: 5.w),
-      child: Material(
-        type: MaterialType.transparency,
-        child: InkWell(
-          customBorder: CircleBorder(),
-          onTap: () => setState(() => showPass = !showPass),
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: AppIcon(showPass ? AppIcons.hide : AppIcons.show),
-          ),
+  Column _socialButtons() {
+    final authState = ref.watch(authNotifierProvider);
+    final authViewModel = ref.read(authNotifierProvider.notifier);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          spacing: 15.w,
+          children: [
+            IconButton(
+              onPressed: authState.isLoading
+                  ? null
+                  : authViewModel.signInWithGoogle,
+              icon: const AppIcon(AppIcons.google_logo),
+            ),
+          ],
         ),
-      ),
+      ],
     );
   }
-}
-
-Row _buttons() {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: [
-      TextButton(onPressed: () {}, child: Text('Forgot\npassword')),
-      FilledButton(onPressed: () {}, child: Text('Login')),
-    ],
-  );
-}
-
-Column _socialButtons(WidgetRef ref, BuildContext context) {
-  final authState = ref.watch(authViewModelProvider);
-  final authViewModel = ref.read(authViewModelProvider.notifier);
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.center,
-    spacing: 10.h,
-    children: [
-      Text('or sign in with'),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        spacing: 15.w,
-        children: [
-          IconButton(
-            onPressed: authState.isLoading
-                ? null
-                : authViewModel.signInWithGoogle,
-            icon: const AppIcon(AppIcons.google_logo),
-          ),
-        ],
-      ),
-    ],
-  );
 }

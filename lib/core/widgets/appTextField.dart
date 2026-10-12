@@ -1,4 +1,7 @@
+import 'package:Expenza/core/utils/enums/icons.dart';
+import 'package:Expenza/core/widgets/app_icon.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppTextField extends StatefulWidget {
   const AppTextField({
@@ -11,6 +14,7 @@ class AppTextField extends StatefulWidget {
     this.obscureText = false,
     this.keyboardType,
     this.validator,
+    this.onChanged,
   });
 
   final TextInputType? keyboardType;
@@ -21,6 +25,7 @@ class AppTextField extends StatefulWidget {
   final bool? enabled;
   final TextInputAction? textInputAction;
   final String? Function(String?)? validator;
+  final void Function(String)? onChanged;
 
   @override
   State<AppTextField> createState() => _AppTextFieldState();
@@ -29,10 +34,12 @@ class AppTextField extends StatefulWidget {
 class _AppTextFieldState extends State<AppTextField>
     with WidgetsBindingObserver {
   final FocusNode _focusNode = FocusNode();
+  late bool _hideText;
 
   @override
   void initState() {
     WidgetsBinding.instance.addObserver(this);
+    _hideText = widget.obscureText;
     super.initState();
   }
 
@@ -60,22 +67,39 @@ class _AppTextFieldState extends State<AppTextField>
 
   @override
   Widget build(BuildContext context) {
-    MediaQuery.viewInsetsOf(context).bottom;
-    MediaQuery.viewPaddingOf(context).bottom;
-    MediaQuery.paddingOf(context).bottom;
     return TextFormField(
       key: widget.key,
       keyboardType: widget.keyboardType,
-      obscureText: widget.obscureText,
+      obscureText: _hideText,
       controller: widget.controller,
       textInputAction: widget.textInputAction,
       enabled: widget.enabled,
       validator: widget.validator,
       decoration: InputDecoration(
         hintText: widget.hintText,
-        suffixIcon: widget.suffixIcon,
+        suffixIcon: widget.keyboardType == TextInputType.visiblePassword
+            ? _showIcon()
+            : widget.suffixIcon,
       ),
       focusNode: _focusNode,
+      onChanged: widget.onChanged,
+    );
+  }
+
+  Padding _showIcon() {
+    return Padding(
+      padding: EdgeInsetsDirectional.only(end: 5.w),
+      child: Material(
+        type: MaterialType.transparency,
+        child: InkWell(
+          customBorder: CircleBorder(),
+          onTap: () => setState(() => _hideText = !_hideText),
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: AppIcon(_hideText ? AppIcons.show : AppIcons.hide),
+          ),
+        ),
+      ),
     );
   }
 }

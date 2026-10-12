@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class AppInputDecorationTheme {
   static InputDecorationTheme copyWith({
     TextStyle? hintStyle,
+    TextStyle? errorStyle,
     Color? fillColor,
     Color? iconColor,
   }) {
@@ -14,6 +15,8 @@ class AppInputDecorationTheme {
       fillColor: fillColor,
       suffixIconColor: iconColor,
       hintStyle: hintStyle,
+      errorStyle: errorStyle,
+      errorMaxLines: 3,
       suffixIconConstraints: BoxConstraints.loose(Size(55.w, 50.h)),
       border: OutlineInputBorder(
         borderSide: BorderSide.none,

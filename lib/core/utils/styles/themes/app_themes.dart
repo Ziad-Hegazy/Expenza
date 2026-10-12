@@ -17,7 +17,7 @@ class AppThemes {
     ),
     textButtonTheme: AppTextButtonTheme.copyWith(
       color: AppColors.black,
-      textStyle: AppTextTheme.values.headlineSmall,
+      textStyle: AppTextTheme.values.headlineMedium,
     ),
     iconButtonTheme: AppIconButtonTheme.copyWith(
       backColor: AppColors.white,
@@ -27,6 +27,9 @@ class AppThemes {
       fillColor: AppColors.white,
       hintStyle: AppTextTheme.values.bodyMedium!.copyWith(
         color: AppColors.black.withAlpha(76),
+      ),
+      errorStyle: AppTextTheme.values.bodySmall!.copyWith(
+        color: AppColors.red,
       ),
       iconColor: AppColors.black,
     ),

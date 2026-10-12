@@ -21,7 +21,7 @@ class BaseAuthScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         body: Stack(
@@ -64,7 +64,7 @@ class BaseAuthScreen extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       crossAxisAlignment: CrossAxisAlignment.center,
-      spacing: 39.h,
+      spacing: 27.h,
       children: [
         _header(
           title: title,
@@ -99,13 +99,18 @@ class BaseAuthScreen extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (showBack)
-              IconButton(
+            Visibility(
+              visible: showBack,
+              maintainSize: true,
+              maintainAnimation: true,
+              maintainState: true,
+              child: IconButton(
                 onPressed: () async {
                   Navigator.maybePop(context);
                 },
                 icon: const Icon(Icons.arrow_back),
               ),
+            ),
             SizedBox(height: 15.h),
             Text(title, style: Theme.of(context).textTheme.titleLarge),
             Text(subtitle, style: Theme.of(context).textTheme.titleMedium),

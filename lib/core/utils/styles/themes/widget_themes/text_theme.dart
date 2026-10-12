@@ -20,6 +20,10 @@ class AppTextTheme {
       fontSize: 18.sp,
       fontVariations: [FontVariation('wght', 500)],
     ),
+    bodySmall: TextStyle(
+      fontSize: 14.sp,
+      fontVariations: [FontVariation('wght', 500)],
+    ),
     headlineMedium: TextStyle(
       fontSize: 18.sp,
       fontVariations: [FontVariation('wght', 700)],
